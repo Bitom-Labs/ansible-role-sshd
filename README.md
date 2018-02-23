@@ -80,6 +80,15 @@ sshd_authorized_principals:
     - ryan
 ```
 
+* sshd_trusted_user_ca_keys_file
+
+The path where the trusted user CA keys file will be stored.  Only used if `sshd_trusted_user_ca_keys` is also set.
+Can be used to set your sshd_TrustedUserCAKeys config. e.g. `sshd_TrustedUserCAKeys: '{{ sshd_trusted_user_ca_keys }}'`
+
+* sshd_trusted_user_ca_keys
+
+A list of CA public keys to trust.
+
 * sshd
 
 A dict containing configuration.  e.g.

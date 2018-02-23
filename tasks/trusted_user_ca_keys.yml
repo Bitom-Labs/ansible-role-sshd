@@ -1,0 +1,6 @@
+- name: Trusted user CA keys file
+  copy:
+    content: "{{ sshd_trusted_user_ca_keys | join('\n') }}"
+    dest: '{{ sshd_trusted_user_ca_keys_file }}'
+    owner: '{{ sshd_config_owner }}'
+    group: '{{ sshd_config_group }}'

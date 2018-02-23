@@ -31,6 +31,9 @@
 - include: authorized_principals.yml
   when: sshd_authorized_principals
 
+- include: trusted_user_ca_keys.yml
+  when: sshd_trusted_user_ca_keys
+
 - name: Service enabled and running
   service:
     name: "{{ sshd_service }}"
