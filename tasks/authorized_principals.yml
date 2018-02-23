@@ -1,0 +1,14 @@
+- name: Authorized principals directory
+  file:
+    path: '{{ sshd_authorized_principals_file|dirname }}'
+    owner: '{{ sshd_config_owner }}'
+    group: '{{ sshd_config_group }}'
+    state: directory
+
+- name: Authorized principals files
+  copy:
+    content: "{{ item.value | join('\n') }}"
+    dest: '{{ sshd_authorized_principals_file|dirname }}/{{ item.key }}'
+    owner: '{{ sshd_config_owner }}'
+    group: '{{ sshd_config_group }}'
+  with_dict: '{{ sshd_authorized_principals }}'

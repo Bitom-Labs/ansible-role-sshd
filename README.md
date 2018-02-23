@@ -63,6 +63,23 @@ If set to False, a reload of sshd wont happen on change. This can help with
 troubleshooting. You'll need to manually reload sshd if you want to apply the
 changed configuration. Defaults to the same value as ``sshd_manage_service``.
 
+* sshd_authorized_principals_file
+
+The path where the authorized principals files will be stored.  Only used if `sshd_authorized_principals` is also set.
+Can be used to set your sshd_AuthorizedPrincipalsFile config. e.g. `sshd_AuthorizedPrincipalsFile: '{{ sshd_authorized_principals_file }}'`
+
+* sshd_authorized_principals
+
+A dict of lists specifying which principals are allowed to login to which users.  Each key in the dict is the name of the user.  The value of the dict is a list of principals that are allowed to login to that user. e.g.
+
+```yaml
+sshd_authorized_principals:
+  root:
+    - root-everywhere
+    - bobby
+    - ryan
+```
+
 * sshd
 
 A dict containing configuration.  e.g.

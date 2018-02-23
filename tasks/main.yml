@@ -28,6 +28,9 @@
     validate: "{{ sshd_binary }} -t -f %s"
   notify: reload_sshd
 
+- include: authorized_principals.yml
+  when: sshd_authorized_principals
+
 - name: Service enabled and running
   service:
     name: "{{ sshd_service }}"
