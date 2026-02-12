@@ -28,11 +28,11 @@
     validate: "{{ sshd_binary }} -t -f %s"
   notify: reload_sshd
 
-- include: authorized_principals.yml
-  when: sshd_authorized_principals
+- ansible.builtin.include_tasks: authorized_principals.yml
+  when: sshd_authorized_principals | length > 0
 
-- include: trusted_user_ca_keys.yml
-  when: sshd_trusted_user_ca_keys
+- ansible.builtin.include_tasks: trusted_user_ca_keys.yml
+  when: sshd_trusted_user_ca_keys | length > 0
 
 - name: Service enabled and running
   service:
